@@ -1,10 +1,8 @@
 import { ArrowLeft, BookOpen } from "lucide-react"
 import Button from "../components/Button"
-import DailyTipCard from "../components/DailyTips/DailyTipCard"
 import { useCallback, useState } from "react";
-import CommunityInsights from "../components/DailyTips/CommunityInsights";
 import { communityInsights, ecoNews, tipsData } from "../constants";
-import Progress from "../components/DailyTips/Progress";
+import { CommunityInsights, DailyTipCard, Progress } from "@/components";
 
 interface TipData {
   id: number;
@@ -94,15 +92,7 @@ const DailyTips = () => {
               <h1 className="text-xl font-semibold">Hey Friend, ready to make a greener choice today?</h1>
               <p className="text-sm opacity-90">Small changes, big impact! Here's a quick tip to help you reduce your footprint.</p>
             </div>
-            <div className="w-full lg:w-1/3 bg-white/20 bg-opacity-20 rounded-lg p-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold">Your Eco Score</span>
-                <span>78/100</span>
-              </div>
-              <div className="bg-white/80 h-2 rounded-lg">
-                <div className="bg-emerald-400 rounded-lg h-2" style={{width:'78%'}}/>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>

@@ -8,7 +8,7 @@ interface InfoCardProps {
   icon: string;
 }
 
-export const InfoCard: FC<InfoCardProps> = ({ id, title, text, icon }) => (
+const InfoCard: FC<InfoCardProps> = ({ id, title, text, icon }) => (
   <NavLink to={`/${title}`} key={id} className="rounded-xl hover:shadow-xl transition p-6 bg-white">
     <div className="flex items-center mb-3">
       <img src={icon} alt={title} className="w-6 h-6 text-emerald-300" />
@@ -17,3 +17,5 @@ export const InfoCard: FC<InfoCardProps> = ({ id, title, text, icon }) => (
     <p className="text-sm text-gray-600">{text}</p>
   </NavLink>
 );
+
+export default InfoCard;

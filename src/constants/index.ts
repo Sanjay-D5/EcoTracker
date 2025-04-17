@@ -8,7 +8,7 @@ export const navItems = [
         url: "/Dashboard"
     },
     {
-        icon: "/assets/icons/car.png",
+        icon: "/assets/icons/footprints.svg",
         name: "Track impact",
         url: "/track-impact"
     },
@@ -48,25 +48,6 @@ export const projects = [
     }
 ]
 
-export const stats = [
-    {
-      title: "Your Carbon Footprint",
-      value: "742 kg CO₂",
-      subtitle: "This month",
-      highlight: true,
-    },
-    {
-      title: "Active Streak",
-      value: "12 days",
-      subtitle: "Keep it up!",
-    },
-    {
-      title: "Eco Points",
-      value: "2,450",
-      subtitle: "Level 5 Eco Warrior",
-    },
-];
-
 export const productsData = [
     {
         id: '1',
@@ -76,10 +57,10 @@ export const productsData = [
         image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800',
         price: 1299,
         ecoScore: 85,
-        rating: 4.7,
+        rating: 4,
         reviews: 128,
         isVerified: true,
-        certifications: ['Organic', 'Fair Trade']
+        certifications: ['Organic', 'FairTrade'],
     },
     {
         id: '2',
@@ -89,23 +70,23 @@ export const productsData = [
         image: 'https://planetgoodwill.com/wp-content/uploads/2018/12/911ZrDKR7CL._SL1500_.jpg',
         price: 899,
         ecoScore: 90,
-        rating: 4.5,
+        rating: 5,
         reviews: 89,
         isVerified: true,
-        certifications: ['Plastic-Free', 'Sustainable']
+        certifications: ['PlasticFree', 'Sustainable'],
     },
     {
         id: '3',
         name: 'Recycled Kitchen items',
         brand: 'EcoPaper',
-        category: 'Stationery',
+        category: 'Accessories',
         image: 'https://thesustainablebrandsjournal.com/wp-content/uploads/2023/10/aaa-mbbLRRx6G-transformed-e1697954086537.jpg',
         price: 499,
         ecoScore: 88,
-        rating: 4.6,
+        rating: 4,
         reviews: 72,
         isVerified: true,
-        certifications: ['Recycled', 'Biodegradable']
+        certifications: ['Recycled', 'Biodegradable'],
     },
     {
         id: '4',
@@ -115,62 +96,62 @@ export const productsData = [
         image: 'https://stepstozerowaste.com/wp-content/uploads/2020/01/toothbrush-3.png',
         price: 299,
         ecoScore: 95,
-        rating: 4.9,
+        rating: 3,
         reviews: 150,
         isVerified: true,
-        certifications: ['Plastic-Free', 'Zero Waste']
+        certifications: ['PlasticFree', 'Zero Waste'],
     },
     {
         id: '5',
         name: 'Compostable Phone Case',
         brand: 'GreenGadget',
-        category: 'Electronics',
+        category: 'EcoBages',
         image: 'https://www.johnsbyrne.com/wp-content/uploads/2014/09/Farmed-Here-013.jpg',
         price: 1599,
         ecoScore: 89,
-        rating: 4.4,
+        rating: 4,
         reviews: 45,
         isVerified: true,
-        certifications: ['Compostable', 'Biodegradable']
+        certifications: ['Compostable', 'Biodegradable'],
     },
     {
         id: '6',
         name: 'Eco-Friendly Yoga Mat',
         brand: 'ZenEarth',
-        category: 'Fitness',
+        category: 'EcoBages',
         image: 'https://static1.squarespace.com/static/52536652e4b007332ef4ecf4/t/594602f0c534a57e3a0a21cf/1497760502920/',
         price: 2499,
         ecoScore: 91,
-        rating: 4.7,
+        rating: 5,
         reviews: 98,
         isVerified: true,
-        certifications: ['Non-Toxic', 'Recyclable']
+        certifications: ['Non-Toxic', 'Recycled'],
     },
     {
         id: '7',
         name: 'Recycled Wool Blanket',
         brand: 'EcoWarm',
-        category: 'Home & Living',
+        category: 'HomeLiving',
         image: 'https://litextension.com/blog/wp-content/uploads/2023/08/image2.webp',
         price: 2799,
         ecoScore: 87,
-        rating: 4.6,
+        rating: 3,
         reviews: 55,
         isVerified: true,
-        certifications: ['Recycled', 'Fair Trade']
+        certifications: ['Recycled', 'FairTrade'],
     },
     {
         id: '8',
         name: 'Biodegradable Toothbrush',
         brand: 'GreenSmile',
-        category: 'Personal Care',
+        category: 'EcoBages',
         image: 'https://www.rescript.in/assets/uploads/inventory/pro_63d8ddada3ae34463.jpg',
         price: 199,
         ecoScore: 93,
-        rating: 4.8,
+        rating: 4,
         reviews: 210,
         isVerified: true,
-        certifications: ['BPA-Free', 'Compostable']
+        certifications: ['BPA-Free', 'Compostable'],
     },
     {
         id: '9',
@@ -180,10 +161,10 @@ export const productsData = [
         image: 'https://img.freepik.com/premium-photo/sustainable-elegance-ecofriendly-product-packaging-mockup-with-empty-white-spaces_839035-458684.jpg',
         price: 399,
         ecoScore: 96,
-        rating: 4.9,
+        rating: 5,
         reviews: 320,
         isVerified: true,
-        certifications: ['Organic', 'Fair Trade']
+        certifications: ['Organic', 'FairTrade']
     }
 ];
 
@@ -244,7 +225,37 @@ export const communityInsights = [
         user: "DK",
         tip: "I started unplugging my devices at night and noticed a decrease in my electricity bill last month!",
         date: "5 days ago"
-    }
+    },
+    {
+        id: 3,
+        user: "SR",
+        tip: "I switched to using cloth napkins instead of paper ones. They’re more durable and cut down on waste!",
+        date: "1 day ago"
+    },
+    {
+        id: 4,
+        user: "AN",
+        tip: "Started composting my kitchen scraps—less trash and now my plants are thriving!",
+        date: "3 days ago"
+    },
+    {
+        id: 5,
+        user: "KT",
+        tip: "I walk or cycle to nearby places instead of using my car. It's healthier and saves fuel!",
+        date: "4 days ago"
+    },
+    {
+        id: 6,
+        user: "RB",
+        tip: "Bought a power strip to turn off multiple electronics at once—super convenient and energy-saving.",
+        date: "6 days ago"
+    },
+    {
+        id: 7,
+        user: "LS",
+        tip: "I’ve been using refillable cleaning products—less plastic and they last longer!",
+        date: "1 week ago"
+    }    
 ]    
 
 export const ecoNews = [
@@ -409,155 +420,6 @@ export const userChallenges: UserChallenge[] = [
       completed: false
     },
 
-];
-
-
-
-export const posts = [
-    {
-        id: 1,
-        user: {
-            name: 'Sarah Green',
-            avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
-            badge: '🌱 Eco Warrior'
-        },
-        content: 'Just completed my first zero-waste month! Amazing how much plastic we can avoid with just a few simple changes. 🌍',
-        likes: 124,
-        comments: 18,
-        image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800'
-    },
-    {
-        id: 2,
-        user: {
-            name: 'Mike Rivers',
-            avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=150',
-            badge: '🌿 Nature Guardian'
-        },
-        content: 'Led a successful beach cleanup today! Together we collected over 100kg of plastic waste. Every small action counts! 🌊',
-        likes: 89,
-        comments: 12,
-        image: 'https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?w=800'
-    },
-    {
-        id: 3,
-        user: {
-        name: 'Emily Woods',
-        avatar: 'https://images.unsplash.com/photo-1525130413817-d45c1d127c42?w=150',
-        badge: '🌻 Sustainable Enthusiast'
-        },
-        content: 'Started composting at home, and I can already see the difference! Less waste, healthier plants. 🌱 #SustainableLiving',
-        likes: 75,
-        comments: 10,
-        image: 'https://images.unsplash.com/photo-1571652467033-371b5ad9d1f7?w=800'
-    },
-    {
-        id: 4,
-        user: {
-        name: 'James Carter',
-        avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150',
-        badge: '🌿 Eco Advocate'
-        },
-        content: 'Switched to a plant-based diet this month! Feeling great and reducing my carbon footprint at the same time. 🥗🌎',
-        likes: 102,
-        comments: 14,
-        image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=800'
-    },
-    {
-        id: 5,
-        user: {
-        name: 'Sophia Martinez',
-        avatar: 'https://images.unsplash.com/photo-1519709041909-b130b5821107?w=150',
-        badge: '🌍 Earth Defender'
-        },
-        content: 'DIY eco-friendly cleaning products are a game-changer! No more harsh chemicals, and my home smells amazing. 🍋✨',
-        likes: 58,
-        comments: 8,
-        image: 'https://images.unsplash.com/photo-1574180566231-6814c417d4a7?w=800'
-    },
-    {
-        id: 6,
-        user: {
-        name: 'Daniel Lee',
-        avatar: 'https://images.unsplash.com/photo-1546525848-3ce03ca516f6?w=150',
-        badge: '🌱 Green Innovator'
-        },
-        content: 'Installed solar panels on my roof! Excited to harness the power of the sun and reduce my electricity bills. ☀️⚡',
-        likes: 150,
-        comments: 22,
-        image: 'https://images.unsplash.com/photo-1550565118-3a14e911ade0?w=800'
-    },
-    {
-        id: 7,
-        user: {
-        name: 'Olivia Bennet',
-        avatar: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?w=150',
-        badge: '🌊 Ocean Protector'
-        },
-        content: 'Refilled my water bottle instead of buying plastic ones. Small habits lead to big changes! 💙 #PlasticFree',
-        likes: 68,
-        comments: 6,
-        image: 'https://images.unsplash.com/photo-1555820585-a9552435a8e1?w=800'
-    },
-    {
-        id: 8,
-        user: {
-        name: 'William Parker',
-        avatar: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=150',
-        badge: '🌾 Zero Waste Champion'
-        },
-        content: 'Tried a zero-waste grocery shopping challenge. Love the idea of bringing my own containers and avoiding plastic! ♻️',
-        likes: 92,
-        comments: 11,
-        image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800'
-    },
-    {
-        id: 9,
-        user: {
-        name: 'Ava Thompson',
-        avatar: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?w=150',
-        badge: '🌱 Eco Ambassador'
-        },
-        content: 'Repurposed old clothes into reusable shopping bags! Fashion meets sustainability. 👜💚',
-        likes: 47,
-        comments: 5,
-        image: 'https://images.unsplash.com/photo-1516478177764-9fe5bd7e971a?w=800'
-    },
-    {
-        id: 10,
-        user: {
-        name: 'Liam Roberts',
-        avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150',
-        badge: '🌍 Green Warrior'
-        },
-        content: 'Planted 20 trees this weekend! Let’s make our planet greener together. 🌳🌿 #Reforestation',
-        likes: 133,
-        comments: 19,
-        image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800'
-    },
-    {
-        id: 11,
-        user: {
-        name: 'Emma Wilson',
-        avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150',
-        badge: '🐝 Pollinator Protector'
-        },
-        content: 'Built a bee-friendly garden! These little pollinators need our help. 🐝🌸 #SaveTheBees',
-        likes: 86,
-        comments: 9,
-        image: 'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=800'
-    },
-    {
-        id: 12,
-        user: {
-        name: 'Noah Bennett',
-        avatar: 'https://images.unsplash.com/photo-1560807707-8cc77767d783?w=150',
-        badge: '🌱 Climate Crusader'
-        },
-        content: 'Rode my bike instead of driving today. Less pollution, more exercise! 🚲🌎',
-        likes: 55,
-        comments: 7,
-        image: 'https://images.unsplash.com/photo-1592496431122-65b6b7b7d869?w=800'
-    }
 ];
 
 export const avatarPlaceholderUrl =

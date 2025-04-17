@@ -1,17 +1,16 @@
 import { Leaf } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import { navItems } from "../constants";
+import { avatarPlaceholderUrl, navItems } from "../constants";
 import { cn } from "@/lib/utils";
 
 interface Props{
-  fullName: string;
-  avatar: string;
-  email: string;
+  fullName?: string;
+  avatar?: string;
+  email?: string;
 }
 
-const Sidebar = ({fullName, avatar, email}: Props) => {
+const Sidebar = ({fullName, avatar = avatarPlaceholderUrl, email}: Props) => {
   return (
-
     <aside className="hidden h-screen w-[90px] flex-col overflow-auto px-5 py-7 sm:flex lg:w-[280px] xl:w-[325px]">
       <NavLink to='/home'>
         <span className="flex items-center justify-center">

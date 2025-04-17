@@ -11,12 +11,12 @@ import { Separator } from "./ui/separator";
 import { navItems } from "@/constants";
 import { cn } from "@/lib/utils";
 import Button from "./Button";
-import { signOutUser } from "@/lib/actions/user.action";
+import { logout } from "@/appwrite/actions/authServices";
 
 interface Props {
-  fullName: string; 
-  avatar: string; 
-  email: string;
+  fullName?: string; 
+  avatar?: string; 
+  email?: string;
 }
 
 const MobileNavigation = ({fullName, avatar, email}: Props) => {
@@ -24,7 +24,7 @@ const MobileNavigation = ({fullName, avatar, email}: Props) => {
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
-    await signOutUser()
+    await logout()
     navigate('/sign-in');
   } 
   return (
@@ -35,9 +35,10 @@ const MobileNavigation = ({fullName, avatar, email}: Props) => {
           <h1 className="font-semibold text-xk lg:text-3xl">Eco Tracker</h1>
         </span>
       </NavLink>
+      
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger>
-          <img src="/assets/icons/menu (1).svg" alt="Search" width={30} height={30} className="bg-gray-100 p-1 rounded-full"/>
+          <img src="/assets/icons/menu.svg" alt="Search" width={30} height={30} className="bg-gray-100 p-1 rounded-full"/>
         </SheetTrigger>
         <SheetContent className="h-screen px-3">
           <SheetTitle>
@@ -59,6 +60,7 @@ const MobileNavigation = ({fullName, avatar, email}: Props) => {
                   className={({isActive}) => cn(
                     "flex text-emerald-500 gap-4 w-full justify-start items-center px-6 rounded-full h-[52px] hover:text-white hover:bg-emerald-400 shadow-drop-2", {"hover:bg-emerald-300 shadow-drop-2" : isActive}
                   )}
+                  onClick={() => setOpen(() => !open)}
                 >
                   <li className="flex items-center gap-4">
                     <img src={icon} alt={name} width={24} height={24} className="h-6 w-6"/>
@@ -74,7 +76,6 @@ const MobileNavigation = ({fullName, avatar, email}: Props) => {
             <LogOut />
             <p>Logout</p>
           </Button>
-         
         </SheetContent>
       </Sheet>
 

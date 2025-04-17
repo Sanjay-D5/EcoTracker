@@ -1,10 +1,8 @@
 import { ArrowLeft, Search, SlidersHorizontal } from "lucide-react"
 import Button from "../components/Button"
 import { productsData } from "../constants"
-import ProductCard from "../components/Shopping/ProductCard"
 import { useMemo, useState } from "react";
-import ProductDetails from "../components/Shopping/ProductDetails";
-import ProductFilter from "../components/Shopping/ProductFilter";
+import { ProductCard, ProductDetails, ProductFilter } from "@/components";
 
 // Types
 type Product = {
@@ -45,39 +43,58 @@ const EcoShopping = () => {
 
   // Filter products based on the current filter settings
   const filteredProducts = useMemo(() => {
-    return productsData.filter(product => {
-      if((filter.category && product.category !== filter.category)){
-        return false;
-      }
-
-      if(filter.certification && !product.certifications.includes(filter.certification)){
-        return false;
-      }
-
-      if(product.ecoScore < filter.minEcoScore){
-        return false;
-      }
-
-      if (product.price < filter.minPrice || product.price > filter.maxPrice) {
-        return false;
-      }
-
-      if(product.rating < filter.minRating){
-        return false;
-      }
-
-      if(searchQuery){
-        const query = searchQuery.toLowerCase();
-        return (
-          product.name.toLowerCase().includes(query) || 
-          product.brand.toLowerCase().includes(query) 
-        );
-      }
-
-      return true;
-    })
-  }, [filter, searchQuery]);
-
+    const query = searchQuery.toLowerCase();
+  
+    return productsData.filter((product) => {
+      const matchesCategory =
+        !filter.category ||
+        product.category.toLowerCase() === filter.category.toLowerCase();
+  
+      const matchesCertification =
+        !filter.certification ||
+        (Array.isArray(product.certifications) &&
+          product.certifications.some(cert => 
+            cert.toLowerCase().includes(filter.certification.toLowerCase())
+          ));
+  
+      const matchesEcoScore =
+        typeof filter.minEcoScore === 'number'
+          ? product.ecoScore >= filter.minEcoScore
+          : true;
+  
+      const matchesPriceRange =
+        typeof filter.minPrice === 'number' && typeof filter.maxPrice === 'number'
+          ? product.price >= filter.minPrice && product.price <= filter.maxPrice
+          : true;
+  
+      const matchesRating =
+        typeof filter.minRating === 'number'
+          ? product.rating >= filter.minRating
+          : true;
+  
+      const matchesSearchQuery =
+        product.name.toLowerCase().includes(query) ||
+        product.brand.toLowerCase().includes(query);
+  
+      return (
+        matchesCategory &&
+        matchesCertification &&
+        matchesEcoScore &&
+        matchesPriceRange &&
+        matchesRating &&
+        matchesSearchQuery
+      );
+    });
+  }, [
+    filter.category,
+    filter.certification,
+    filter.minEcoScore,
+    filter.minPrice,
+    filter.maxPrice,
+    filter.minRating,
+    searchQuery
+  ]);
+ 
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
   }
@@ -107,19 +124,20 @@ const EcoShopping = () => {
       </header>
 
       {/* Search bar */}
-      <div className=" container mx-auto mt-4 px-2 flex">
-        <div className="flex-1 relative ">
+      <div className="container mx-auto mt-4 px-2 flex">
+        <div className="flex-1 relative">
           <Search className="h-5 w-5 text-gray-500 absolute left-3 top-1/2 -translate-y-1/2"/>
           <input 
-          type="search" 
-          placeholder="Search for products or brands..." 
-          className="w-full pl-10 pr-4 py-2 bg-gray-100 border-0 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-500" 
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+            type="search" 
+            placeholder="Search for products or brands..." 
+            className="w-full pl-10 pr-4 py-2 bg-gray-100 border-0 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-500" 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <Button className="bg-white rounded-xl hover:bg-emerald-300 transition-colors flex p-1 items-center ml-3 gap-3 px-3" 
-        onClick={toggleFilter}
+        <Button 
+          className="bg-white rounded-xl hover:bg-emerald-300 transition-colors flex p-1 items-center ml-3 gap-3 px-3" 
+          onClick={toggleFilter}
         >
           <SlidersHorizontal className="h-5 w-5" />
           Filters
@@ -130,31 +148,31 @@ const EcoShopping = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
-              onViewDetails={() => handleViewDetails(product)}
-            />
-          ))}
-        </div>
+            {filteredProducts.map((product) => (
+              <ProductCard 
+                key={product.id} 
+                product={product} 
+                onViewDetails={() => handleViewDetails(product)}
+              />
+            ))}
+          </div>
         ) : (
-          <div className="text-center py-10">
-            <p className="text-lg text-gray-600">No products match your current filters</p>
-            <Button
-              className="mt-4 bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition"
-              onClick={() => setFilter({
+          <Button
+            className="mt-4 bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition"
+            onClick={() => {
+              setFilter({
                 category: '',
                 certification: '',
                 minEcoScore: 0,
                 minPrice: 0,
                 maxPrice: 10000,
                 minRating: 0,
-              })}
-            >
-              Clear Filter
-            </Button>
-          </div>
+              });
+              setSearchQuery(""); 
+            }}
+          >
+            Clear Filter
+          </Button>
         )}
       </div>
 

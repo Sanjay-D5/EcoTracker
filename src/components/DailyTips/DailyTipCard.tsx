@@ -10,9 +10,8 @@ interface DailyTipCardProps {
     tipCompleted: boolean;
     onMarkDone?: () => void;
     onShare?: () => void;
-  }
+}
 
-//The use of memo here is to optimize performance by preventing unnecessary re-renders of the component when its props have not changed.
 const DailyTipCard = memo<DailyTipCardProps>(({tip, icon, impact, tipCompleted, onMarkDone, onShare}) => {
     
   return (
@@ -49,8 +48,5 @@ const DailyTipCard = memo<DailyTipCardProps>(({tip, icon, impact, tipCompleted, 
     </div>
   );
 });
-
-// Display name for debugging purposes
-DailyTipCard.displayName = 'DailyTipCard';
 
 export default DailyTipCard

@@ -33,9 +33,10 @@ const ProductDetails = ({product, onClose}: ProductCardProps) => {
             </Button>
           </div>
           <div className="p-4 lg:p-6 space-y-1">
-            <div className='flex items-center gap-3'>
+            <div className='flex items-center justify-between gap-3'>
               <span className='font-semibold text-base text-gray-600'>{product.brand}</span>
               {product.isVerified && ( <Verified className='h-5 w-5 text-emerald-600'/> )}
+              <div className="font-semibold text-base text-emerald-700">{product.category}</div>
             </div>
             <h2 className='text-xl font-semibold'>{product.name}</h2>
             <div className='flex space-x-2'>
@@ -55,10 +56,19 @@ const ProductDetails = ({product, onClose}: ProductCardProps) => {
               <div>
                 <h3 className="font-semibold mb-2">Certifications</h3>
                 <div className="flex flex-wrap gap-2">
-                  {product.certifications.map((cert) => (
-                    <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-2xl text-sm">{cert}</span>
-                  ))}
+                  {Array.isArray(product.certifications) ? (
+                    product.certifications.map((cert, index) => (
+                      <span key={index} className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-2xl text-sm">
+                        {cert}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-2xl text-sm">
+                      {product.certifications}
+                    </span>
+                  )}
                 </div>
+                
               </div>
             </div>
             <div className="flex justify-between items-center pt-3">
@@ -74,7 +84,6 @@ const ProductDetails = ({product, onClose}: ProductCardProps) => {
               </div>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

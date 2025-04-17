@@ -1,11 +1,8 @@
 import { ArrowLeft, Leaf, Search } from "lucide-react"
 import Button from "../components/Button"
 import { ChangeEvent, useState } from "react"
-import CategoryFilter from "../components/Challenges/CategoryFilter"
-import SortOptions from "../components/Challenges/SortOptions"
 import { challenges as allChallenges, userChallenges as initialUserChallenges } from "../constants"
-import ChallengeCard from "../components/Challenges/ChallengeCard"
-import ProgressTracker from "../components/Challenges/ProgressTracker"
+import { CategoryFilter, ChallengeCard, ProgressTracker, SortOptions } from "@/components"
 
 export interface Challenges {
   id: string,

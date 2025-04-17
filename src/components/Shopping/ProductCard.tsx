@@ -15,7 +15,7 @@ type Product = {
     isVerified: boolean;
     certifications: string[];
 };
-
+  
 type ProductCardProps = {
     product: Product;
     onViewDetails: () => void;
@@ -52,17 +52,12 @@ const ProductCard = ({product, onViewDetails}: ProductCardProps) => {
                 </div>
                 <div className='font-semibold'>₹{product.price}</div>
             </div>
-         
             
            <Button className='bg-emerald-500 text-white hover:bg-emerald-600 flex items-center justify-center gap-2 w-full rounded-md'  onClick={onViewDetails}>
                 <ShoppingBag className='h-5 w-5'/>
                 View Details
             </Button> 
-            
         </div> 
-      
-            
-       
     </div>
   )
 }

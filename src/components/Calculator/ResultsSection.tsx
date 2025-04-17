@@ -1,5 +1,6 @@
+import { saveUserImpactData } from '@/appwrite/actions/userAction';
 import { BarChart, Leaf, PieChart, Trophy } from 'lucide-react';
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 
 // Carbon Calculator form data interface
 interface TransportData {
@@ -45,6 +46,9 @@ interface CategoryBreakdown {
 interface ResultsSectionProps {
   data: FormData;
   totalFootprint: number;
+  userId?: string;
+  onSaveComplete?: () => void;
+  onSaveError?: (error: any) => void;
 }
 
 interface Recommendation {
@@ -54,10 +58,18 @@ interface Recommendation {
   savingAmount: number;
 }
 
-const ResultsSection: React.FC<ResultsSectionProps> = ({ data, totalFootprint }) => {
+// Outside the component, at module level
+const dataAlreadySaved = new Set();
+
+const ResultsSection: React.FC<ResultsSectionProps> = ({ 
+  data, 
+  totalFootprint, 
+  userId,
+  onSaveComplete,
+  onSaveError
+}) => {
   // National average carbon footprint (in kg CO₂)
   const nationalAverage = 5000;
-  
   // Calculate breakdown percentages based on form data
   const breakdown = useMemo<CategoryBreakdown>(() => {
     // Calculate footprint for each category
@@ -108,10 +120,9 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ data, totalFootprint })
     };
   }, [data]);
 
-  
   // Generate tailored recommendations based on the user's data
   const recommendations = useMemo<Recommendation[]>(() => {
-  const recs: Recommendation[] = [];
+    const recs: Recommendation[] = [];
     
     // Transport recommendations
     if (data.transport.mode === 'car' && data.transport.carType !== 'electric') {
@@ -200,11 +211,43 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ data, totalFootprint })
     [recommendations]
   );
   
+  useEffect(() => {
+    const saveResults = async () => {
+      // Use the userId as a key to track what's been saved
+      const saveKey = `${userId}-${totalFootprint}`;
+      if (!userId || dataAlreadySaved.has(saveKey)) return;
+      
+      try {
+        await saveUserImpactData({
+          data,
+          totalFootprint,
+          recommendations,
+          potentialSavings,
+          userId
+        });
+        
+        // Add to our set of saved items
+        dataAlreadySaved.add(saveKey);
+
+        if (onSaveComplete) {
+          onSaveComplete();
+        }
+      } catch (error) {
+        console.error("Failed to save carbon footprint data:", error);
+        if (onSaveError) {
+          onSaveError(error);
+        }
+      }
+    };
+
+    saveResults();
+  }, []);
+  
   return (
     <div className='space-y-4 lg:space-y-6'>
       <header className="flex items-center space-x-4 mb-6">
         <div className="rounded-full p-2 bg-emerald-100">
-          <Leaf className="w-6 h-6 text-emerald-500" aria-hidden="true" />
+          <Leaf className="w-6 h-6 text-emerald-500" />
         </div>
         <div>
           <h2 className="font-semibold">Your Carbon Footprint Results</h2>
@@ -213,8 +256,7 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ data, totalFootprint })
       </header>
 
       {/* Main Score */}
-      <section aria-labelledby="main-score" className='text-center p-6 bg-emerald-50 rounded-lg mb-5'>
-        <h2 id="main-score" className="sr-only">Main Carbon Footprint Score</h2>
+      <section className='text-center p-6 bg-emerald-50 rounded-lg mb-5'>
         <div className='text-3xl font-bold text-emerald-800'>{totalFootprint.toLocaleString()} kg CO₂</div>
         <p className='text-xs text-gray-600'>Your estimated annual carbon footprint</p>
       </section>
@@ -222,10 +264,10 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ data, totalFootprint })
       {/* Breakdown */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
         {/* Pie chart */}
-        <section aria-labelledby="breakdown-heading" className='bg-white rounded-lg p-4 lg:p-6 shadow-sm'>
+        <section className='bg-white rounded-lg p-4 lg:p-6 shadow-sm'>
           <header className='flex items-center mb-4 space-x-4'>
-            <PieChart className='w-5 h-5 text-emerald-700' aria-hidden="true" />
-            <h3 id="breakdown-heading" className='font-semibold text-gray-800'>Breakdown by Category</h3>
+            <PieChart className='w-5 h-5 text-emerald-700' />
+            <h3 className='font-semibold text-gray-800'>Breakdown by Category</h3>
           </header>
           <div className='space-y-3'>
             {Object.entries(breakdown).map(([category, percentage]) => (
@@ -237,9 +279,6 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ data, totalFootprint })
                 <div 
                   className='h-2 w-full bg-gray-300 rounded-full' 
                   role="progressbar" 
-                  aria-valuenow={percentage} 
-                  aria-valuemin={0} 
-                  aria-valuemax={100}
                 >
                   <div 
                     className='bg-emerald-600 h-2 rounded-full' 
@@ -252,10 +291,10 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ data, totalFootprint })
         </section>
 
         {/* Comparison */}
-        <section aria-labelledby="comparison-heading" className='bg-white rounded-lg p-4 lg:p-6 shadow-sm'>
+        <section className='bg-white rounded-lg p-4 lg:p-6 shadow-sm'>
           <header className='flex items-center space-x-4 mb-4'>
-            <BarChart className='w-5 h-5 text-emerald-700' aria-hidden="true" />
-            <h3 id="comparison-heading" className='text-gray-800 font-semibold'>How You Compare</h3>
+            <BarChart className='w-5 h-5 text-emerald-700'/>
+            <h3 className='text-gray-800 font-semibold'>How You Compare</h3>
           </header>
           <div className='space-y-4' >
             <div>
@@ -266,9 +305,6 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ data, totalFootprint })
               <div 
                 className='h-2 rounded-xl w-full bg-gray-300'
                 role="progressbar"
-                aria-valuenow={comparisonPercentage}
-                aria-valuemin={0}
-                aria-valuemax={100}
               >
                 <div 
                   className='h-2 bg-emerald-600 rounded-full' 
@@ -290,10 +326,10 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ data, totalFootprint })
         </section>
       </div>
 
-      <section aria-labelledby="recommendations-heading" className="bg-white rounded-lg p-4 lg:p-6 shadow-sm">
+      <section className="bg-white rounded-lg p-4 lg:p-6 shadow-sm">
         <header className="flex items-center space-x-2 mb-4">
-          <Trophy className="w-5 h-5 text-emerald-600" aria-hidden="true" />
-          <h3 id="recommendations-heading" className="font-semibold text-gray-800">Recommendations</h3>
+          <Trophy className="w-5 h-5 text-emerald-600" />
+          <h3 className="font-semibold text-gray-800">Recommendations</h3>
         </header>
         <div className="mb-4 px-4 py-3 bg-emerald-50 rounded-lg">
           <p className="text-sm text-emerald-700">

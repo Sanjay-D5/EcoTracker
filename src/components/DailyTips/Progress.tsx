@@ -3,7 +3,7 @@ import { progress } from "../../constants"
 import { memo } from "react";
 
 interface ProgressProps {
-    streak: number; // Changed from Streak to streak for consistent camelCase naming
+    streak: number; 
 }
 
 const Progress = memo<ProgressProps>(({ streak}) => {
@@ -37,7 +37,7 @@ const Progress = memo<ProgressProps>(({ streak}) => {
                     const isCompleted = index < streak;
                     return (
                         <div key={index} className="text-center ">
-                        <div className={`p-1 rounded-full  mb-1 ${isCompleted ? 'bg-emerald-500' : 'bg-gray-400'}`}>
+                        <div className={`p-1 rounded-full mb-1 ${isCompleted ? 'bg-emerald-500' : 'bg-gray-400'}`}>
                             <Verified className="h-4 w-4 text-white"/>
                         </div>
                         <span className="text-gray-500 text-sm">{day}</span>
@@ -49,8 +49,5 @@ const Progress = memo<ProgressProps>(({ streak}) => {
     </div>
   );
 });
-
-// Display name for debugging purposes
-Progress.displayName = 'Progress';
 
 export default Progress

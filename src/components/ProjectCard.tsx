@@ -6,7 +6,7 @@ interface ProjectCardProps {
   image: string;
 }
 
-export const ProjectCard: FC<ProjectCardProps> = ({ title, text, image }) => (
+const ProjectCard: FC<ProjectCardProps> = ({ title, text, image }) => (
   <div className="relative rounded-xl overflow-hidden group">
     <img 
       src={image} 
@@ -20,3 +20,5 @@ export const ProjectCard: FC<ProjectCardProps> = ({ title, text, image }) => (
     </div>
   </div>
 );
+
+export default ProjectCard;

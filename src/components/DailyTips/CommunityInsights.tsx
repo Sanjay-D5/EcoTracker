@@ -81,7 +81,4 @@ const CommunityInsights: React.FC<CommunityInsightsProps> = ({
   )
 }
 
-// Display name for debugging purposes
-CommunityInsights.displayName = 'CommunityInsights';
-
 export default CommunityInsights
