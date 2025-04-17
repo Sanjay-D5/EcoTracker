@@ -1,54 +1,85 @@
-# React + TypeScript + Vite
+# 🌱 EcoTracker - Track Your Carbon Footprint & Build Greener Habits
+EcoTracker is a powerful, user-friendly web application built with React.js, TypeScript, and Appwrite, designed to help users track their environmental impact, adopt sustainable habits, and learn through real-time insights.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is perfect for anyone passionate about reducing their carbon footprint and living an eco-conscious life — and also a showcase of modern front-end and back-end integration skills.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [About the Project](#about-the-project)
+- [Key Features](#key-features)
+- [Live Demo](#live-demo)
+- [How to Install and Run](#how-to-install-and-run)
+- [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
+- [Future Enhancements](#future-enhancements)
+- [Contact](#contact)
 
-## Expanding the ESLint configuration
+## 🔍 About the Project
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+EcoTracker is your sustainability dashboard. Whether you're new to eco-living or already on your green journey, this app helps you:
+Measure your daily carbon footprint
+Discover eco-friendly tips
+Take on challenges that reduce emissions
+Track your progress and habits visually
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🚀 Core Features
+
+- Carbon Footprint Calculator
+- Personalized Eco Tips & Daily Insights
+- Eco Challenges with Progress Tracker
+- Sustainable Shopping Guide
+- Authentication & Data Persistence using Appwrite
+- Responsive Design for all devices
+
+## ⚙️ Installation & Setup
+
+### Clone the repository
+```
+git clone https://github.com/Sanjay-D5/EcoTracker.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Navigate to the project directory
 ```
+cd EcoTracker
+```
+
+### Install dependencies
+```
+npm install
+```
+
+### Start the development server
+```
+npm run dev
+```
+
+- 💡 Make sure to configure your Appwrite instance and .env file for backend integration.
+
+## 🛠️ Tech Stack
+
+Frontend: React.js, TypeScript, Tailwind CSS, Shadcn UI, Framer Motion
+State Management: Redux Toolkit, React Hook Form
+Backend: Appwrite (Auth, Database, Storage)
+Deployment: (e.g., Vercel/Netlify)
+
+## 📸 Screenshots
+
+📊 Dashboard section
+
+![Screenshot 2025-03-20 142738](https://github.com/user-attachments/assets/ab290176-1b8e-4933-a9da-d0c8c21ca153)
+
+🧮 Carbon Calculator
+
+🛍️ Eco Shopping 
+
+## 🚧 Future Roadmap
+
+ - Add offline support with service workers (PWA)
+ - Integrate carbon offset partner API
+ - Enable push notifications for challenges
+ - Add more gamification: streaks, achievements
+
+ ## 🤝 Contact
+ 
+- **GitHub**: [Sanjay D.](https://github.com/sanjayshre)
+- **Email**: sanjayd7576@gmail.com
