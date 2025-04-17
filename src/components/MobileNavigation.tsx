@@ -8,7 +8,7 @@ import { Leaf, LogOut } from "lucide-react"
 import { useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import { Separator } from "./ui/separator";
-import { navItems } from "@/constants";
+import { avatarPlaceholderUrl, navItems } from "@/constants";
 import { cn } from "@/lib/utils";
 import Button from "./Button";
 import { logout } from "@/appwrite/actions/authServices";
@@ -19,7 +19,7 @@ interface Props {
   email?: string;
 }
 
-const MobileNavigation = ({fullName, avatar, email}: Props) => {
+const MobileNavigation = ({fullName, avatar = avatarPlaceholderUrl, email}: Props) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
